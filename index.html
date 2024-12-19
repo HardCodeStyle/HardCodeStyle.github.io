@@ -3,25 +3,32 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>HardCodeStyle Redirect</title>
+  <title>Facebook SDK Integration</title>
 </head>
 <body>
-  <h1>HardCodeStyle Redirect</h1>
-  <p>If you're seeing this page, the authentication process worked!</p>
-  <p>Access Token: <span id="token"></span></p>
+  <h1>Facebook SDK Example</h1>
+  <p>Dies ist ein einfaches Beispiel für die Integration des Facebook SDK.</p>
 
+  <!-- Facebook SDK Code -->
   <script>
-    // Parse the access token from the URL hash
-    const hash = window.location.hash;
-    const params = new URLSearchParams(hash.substring(1));
-    const accessToken = params.get('access_token');
+    window.fbAsyncInit = function() {
+      FB.init({
+        appId      : 'your-app-id', // Ersetze durch deine App-ID
+        cookie     : true,
+        xfbml      : true,
+        version    : 'v17.0' // API-Version
+      });
+      
+      FB.AppEvents.logPageView();   
+    };
 
-    // Display the token if available
-    if (accessToken) {
-      document.getElementById('token').textContent = accessToken;
-    } else {
-      document.getElementById('token').textContent = 'No token found';
-    }
+    (function(d, s, id){
+       var js, fjs = d.getElementsByTagName(s)[0];
+       if (d.getElementById(id)) {return;}
+       js = d.createElement(s); js.id = id;
+       js.src = "https://connect.facebook.net/en_US/sdk.js";
+       fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
   </script>
 </body>
 </html>
