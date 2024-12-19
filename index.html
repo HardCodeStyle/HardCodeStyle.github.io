@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HardCodeStyle Redirect</title>
+</head>
+<body>
+  <h1>HardCodeStyle Redirect</h1>
+  <p>If you're seeing this page, the authentication process worked!</p>
+  <p>Access Token: <span id="token"></span></p>
+
+  <script>
+    // Parse the access token from the URL hash
+    const hash = window.location.hash;
+    const params = new URLSearchParams(hash.substring(1));
+    const accessToken = params.get('access_token');
+
+    // Display the token if available
+    if (accessToken) {
+      document.getElementById('token').textContent = accessToken;
+    } else {
+      document.getElementById('token').textContent = 'No token found';
+    }
+  </script>
+</body>
+</html>
